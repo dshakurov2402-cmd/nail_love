@@ -3,161 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой папа — Наиль Шакуров</title>
+    <title>Для самого лучшего папы — Наиля Шакурова</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --accent-color: #ff6b6b;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --primary: #2563eb;
+            --accent: #ef4444;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background: var(--bg-gradient);
-            color: #333;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #1f2937;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            padding: 20px;
+        }
+
+        header {
+            padding: 60px 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
 
         h1 {
             font-family: 'Pacifico', cursive;
-            font-size: 4rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            animation: fadeInDown 1.5s ease;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--accent);
+            margin: 0;
+            text-shadow: 2px 2px 0px rgba(255,255,255,1);
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 300;
-            opacity: 0.8;
-            animation: fadeInUp 2s ease;
+            margin-top: 10px;
+            color: #4b5563;
         }
 
-        .heart {
-            color: var(--accent-color);
-            font-size: 2rem;
-            animation: pulse 1.5s infinite;
-            margin-top: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
+        .main-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            line-height: 1.8;
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .photo-placeholder {
-            width: 200px;
-            height: 200px;
-            background: #ddd;
+        .profile-img {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            margin: 0 auto 30px;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 6px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .photo-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .btn-love { background: #ff6b6b; color: white; }
+        .btn-love:hover { background: #ff5252; transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,107,107,0.4); }
 
-        p {
-            font-size: 1.2rem;
-            color: #555;
+        .btn-compliment { background: #4facfe; color: white; }
+        .btn-compliment:hover { background: #00f2fe; transform: translateY(-5px); box-shadow: 0 8px 25px rgba(79,172,254,0.4); }
+
+        #message-area {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ef4444;
+            min-height: 40px;
+            transition: all 0.5s;
         }
 
         footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Анимации */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .card { padding: 20px; }
+            margin-top: 50px;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Наиль Шакуров</h1>
-        <div class="subtitle">Самый лучший папа в мире</div>
-        <div class="heart">❤️</div>
-    </header>
+    <div class="floating-hearts" id="hearts"></div>
 
     <div class="container">
-        <div class="card">
-            <div class="photo-placeholder">
-                <img src="https://via.placeholder.com/200" alt="Наиль Шакуров">
+        <header>
+            <h1>Наиль Шакуров</h1>
+            <div class="subtitle">Самый лучший папа в мире ❤️</div>
+        </header>
+
+        <main class="main-card">
+            <img src="https://via.placeholder.com/180" alt="Папа" class="profile-img" id="papa-img">
+            
+            <p style="font-size: 1.2rem;">Дорогой папа, этот сайт я создал специально для тебя!</p>
+            
+            <div id="message-area"></div>
+
+            <div class="buttons-grid">
+                <button class="btn btn-love" onclick="showLove()">Признаться в любви</button>
+                <button class="btn btn-compliment" onclick="giveCompliment()">Лучшее качество</button>
             </div>
-            <h2>Дорогой папа!</h2>
-            <p>
-                Этот сайт я создал специально для тебя. Ты — мой главный пример, моя опора и мой лучший друг. 
-                Я очень тебя люблю и горжусь тем, что мой папа именно ты.
-            </p>
-            <p>
-                Спасибо тебе за твою доброту, мудрость и за всё, что ты для меня делаешь. 
-                Пусть этот маленький уголок интернета напоминает тебе о том, как сильно тебя ценят!
-            </p>
-        </div>
+        </main>
+
+        <footer>
+            С любовью, твой сын Дамир | 2026
+        </footer>
     </div>
 
-    <footer>
-        Сделано с любовью | 2026
-    </footer>
+    <script>
+        // Функция для эффекта признания
+        function showLove() {
+            const area = document.getElementById('message-area');
+            area.style.transform = "scale(1.2)";
+            area.innerHTML = "ПАПА, Я ТЕБЯ ОЧЕНЬ ЛЮБЛЮ! ❤️❤️❤️";
+            createHeartExplosion();
+            setTimeout(() => { area.style.transform = "scale(1)"; }, 300);
+        }
 
+        // Список комплиментов
+        const compliments = [
+            "Самый мудрый 🧠",
+            "Всегда поддержишь 💪",
+            "Лучший мастер на все руки 🛠️",
+            "Самый добрый папа в мире 🌍",
+            "Мой главный пример для подражания 🌟",
+            "У тебя отличное чувство юмора! 😄"
+        ];
+
+        function giveCompliment() {
+            const area = document.getElementById('message-area');
+            const random = compliments[Math.floor(Math.random() * compliments.length)];
+            area.style.opacity = 0;
+            setTimeout(() => {
+                area.innerHTML = random;
+                area.style.opacity = 1;
+            }, 200);
+        }
+
+        // Создание падающих сердечек
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-20px';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.opacity = Math.random();
+            heart.style.transition = 'transform 5s linear, opacity 5s';
+            
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = `translateY(110vh) rotate(${Math.random() * 360}deg)`;
+                heart.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => { heart.remove(); }, 6000);
+        }
+
+        function createHeartExplosion() {
+            for(let i=0; i<15; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+
+        setInterval(createHeart, 800);
+    </script>
 </body>
 </html>
